@@ -18,8 +18,18 @@ Post request json file structure
 //to look the user schema look ../models/user.js
 
 const registerUser =async (req, res) => {
-
-    //Write you code here
+    let {name,email,password} = req.body
+    obj =  {
+        "name":name,
+        "email":email,
+        "password": password
+    }
+    try{
+        let user = await new users(obj).save();
+        res.send(user._id)
+    }catch(e){
+        res.status(404).send(e.message)
+    }
 
 }
 
